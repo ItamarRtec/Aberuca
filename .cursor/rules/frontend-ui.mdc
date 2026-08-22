@@ -1,0 +1,16 @@
+---
+description: Aberuca frontend — Next.js on Vercel. Design Card first, then a simple hero. Tokens only.
+globs: frontend/**
+alwaysApply: false
+---
+
+# Frontend UI
+
+Follow `frontend/AGENTS.md`. This is Next.js 16 — check `frontend/node_modules/next/dist/docs/` for current APIs.
+
+1. Build or update the Design Card before any page section.
+2. Put new colors, type sizes, radii, shadows, and spacing on the card first.
+3. Components use `var(--token)` only — no raw hex or one-off `px` for those values.
+4. Tailwind is for layout. Do not invent a second palette in `@theme`.
+5. Hero is headline + one line + one primary CTA. Do not add extra chrome.
+6. Server Components first. Semantic HTML, visible focus, WCAG AA, mobile-first, `prefers-reduced-motion`.

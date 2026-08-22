@@ -1,0 +1,158 @@
+/*
+  Aberuca design tokens — source of truth.
+  Sampled from the official wordmark field, then tuned for WCAG 2.2 AA.
+  Components may only use these custom properties.
+*/
+
+:root {
+  /* Interface color */
+  --color-bg: #efede8;
+  --color-surface: #ffffff;
+  --color-surface-inset: #e4e1db;
+  --color-text: #16181c;
+  --color-text-muted: #5c6168;
+  --color-accent: #2b5fa0;
+  --color-accent-text: #ffffff;
+  --color-border: #d4d0c9;
+  --color-focus: #2b5fa0;
+
+  /* Atmosphere (wordmark field) */
+  --color-mist: #c0beb9;
+  --color-ember: #ca3b35;
+  --color-rose: #c41f47;
+  --color-violet: #8967a3;
+  --color-violet-wash: #9f7eae;
+  --color-blue: #2b5fa0;
+  --color-blue-deep: #3669ab;
+  --color-ember-hot: #c41f47;
+  --color-text-on-atmosphere: #ffffff;
+  --color-text-on-atmosphere-muted: rgb(255 255 255 / 0.82);
+  --color-glass: rgb(3 5 31 / 0.2);
+  --color-glass-border: rgb(255 255 255 / 0.2);
+
+  /* Flow field (WebGL hero) — vec3(0.42,0.40,0.46) etc. */
+  --color-flow-gray: #b9b6b2;
+  --color-flow-coral: #e4444e;
+  --color-flow-violet: #8560a0;
+  --color-flow-blue: #3268ab;
+  --color-flow-navy: #285b98;
+  --gradient-atmosphere:
+    linear-gradient(
+      90deg,
+      var(--color-mist) 0%,
+      var(--color-violet-wash) 48%,
+      var(--color-blue-deep) 100%
+    );
+  --gradient-hero:
+    radial-gradient(
+      ellipse 45% 70% at 31% 50%,
+      var(--color-ember) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 75% at 52% 52%,
+      var(--color-violet) 0%,
+      transparent 72%
+    ),
+    linear-gradient(
+      90deg,
+      var(--color-mist) 0%,
+      var(--color-violet-wash) 50%,
+      var(--color-blue-deep) 100%
+    );
+  --atmosphere-blur: 6rem;
+  --atmosphere-aspect: 1.768;
+  --grain-opacity: 0.48;
+  --orb-ember-x: 32%;
+  --orb-ember-y: 50%;
+  --orb-ember-w: 52%;
+  --orb-ember-h: 88%;
+  --orb-rose-x: 42%;
+  --orb-rose-y: 50%;
+  --orb-rose-w: 40%;
+  --orb-rose-h: 70%;
+  --orb-violet-x: 58%;
+  --orb-violet-y: 50%;
+  --orb-violet-w: 46%;
+  --orb-violet-h: 78%;
+
+  /* Typography — Open Sauce One UI + Jost Light wordmark */
+  --font-body: var(--font-open-sauce), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: var(--font-open-sauce), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-wordmark: var(--font-jost), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-hero: clamp(1.35rem, 2.2vw + 0.8rem, 2rem);
+  --text-wordmark: clamp(4.75rem, 10.5vw, 9.75rem);
+  --wordmark-scale: 1;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --leading-wordmark: 0.9;
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-body: 1.6;
+  --tracking-wordmark: -0.045em;
+  --tracking-caps: 0.08em;
+  --measure: 40rem;
+  --page-width: 72rem;
+  --atmosphere-min-height: 16rem;
+
+  /* Space (4-based) */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* Boxes */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-pill: 999px;
+  --border-thin: 1px solid var(--color-border);
+  --border-glass: 1px solid var(--color-glass-border);
+  --border-edit: 1px solid var(--color-text-on-atmosphere);
+  --outline-edit: 1px dashed var(--color-text-on-atmosphere);
+  --shadow-none: none;
+  --shadow-soft: 0 1px 2px rgb(22 24 28 / 0.06), 0 8px 24px rgb(22 24 28 / 0.06);
+  --shadow-text: 0 1px 2px rgb(3 5 31 / 0.2);
+  --blur-glass: 1rem;
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration-med: 200ms;
+  --duration-field: 700ms;
+  --duration-nav-rise: 1.4s;
+  --duration-nav-extend: 1.25s;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-nav-rise: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-nav-extend: cubic-bezier(0.22, 0, 0.18, 1);
+  --flow-fps: 24;
+  --flow-cycle: 32s;
+  --flow-grain: 0.035;
+  --flow-opacity: 0.38;
+
+  /* Control */
+  --control-min-height: 2.75rem;
+  --nav-mark-size: 2rem;
+  --focus-ring: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-med: 0ms;
+    --duration-field: 0ms;
+    --duration-nav-rise: 0ms;
+    --duration-nav-extend: 0ms;
+  }
+}

@@ -1,0 +1,86 @@
+.atmosphere {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: var(--atmosphere-min-height);
+  display: grid;
+  place-items: center;
+  padding: var(--space-3xl) var(--space-xl);
+  border-radius: var(--radius-lg);
+  background: var(--gradient-atmosphere);
+  box-shadow: var(--shadow-soft);
+  color: var(--color-text-on-atmosphere);
+}
+
+.atmosphere--banner {
+  min-height: 0;
+  aspect-ratio: var(--atmosphere-aspect);
+}
+
+.atmosphere--hero {
+  position: absolute;
+  inset: 0;
+  min-height: 100dvh;
+  border-radius: 0;
+  background: var(--gradient-hero);
+  box-shadow: none;
+}
+
+.atmosphere__field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  filter: blur(var(--atmosphere-blur));
+  transform: translate(-50%, -50%);
+}
+
+.orb--ember {
+  left: var(--orb-ember-x);
+  top: var(--orb-ember-y);
+  width: var(--orb-ember-w);
+  height: var(--orb-ember-h);
+  background: var(--color-ember-hot);
+}
+
+.orb--rose {
+  left: var(--orb-rose-x);
+  top: var(--orb-rose-y);
+  width: var(--orb-rose-w);
+  height: var(--orb-rose-h);
+  background: var(--color-rose);
+}
+
+.orb--violet {
+  left: var(--orb-violet-x);
+  top: var(--orb-violet-y);
+  width: var(--orb-violet-w);
+  height: var(--orb-violet-h);
+  background: var(--color-violet);
+}
+
+.atmosphere__wordmark {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-wordmark);
+  font-size: var(--text-wordmark);
+  font-weight: var(--weight-light);
+  letter-spacing: var(--tracking-wordmark);
+  line-height: var(--leading-wordmark);
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+}
