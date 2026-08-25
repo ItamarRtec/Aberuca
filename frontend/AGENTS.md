@@ -22,6 +22,7 @@ Build Aberuca’s UI so it looks intentional, loads fast, and stays easy to chan
 4. **Tokens only.** No raw hex, `rgb()`, or one-off `px` for color, type, space, radius, or shadow in components. Use `var(--...)`. Do not invent a second palette in Tailwind `@theme`.
 5. **Server Components first.** Semantic landmarks, real headings, real buttons/links. CSS for look. Client JS only when the UI cannot work without it.
 6. **Do not invent brand.** If product name, voice, or palette is undefined, use clear placeholders and ask. Do not decorate to fill space.
+7. **Language follows the market.** USA is English. Perú and Latam are Spanish — every label, button, form, error, and section on those routes.
 
 ## Workflow
 

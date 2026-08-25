@@ -14,7 +14,12 @@ type MarketingLandingProps = {
   region: RegionId;
 };
 
-type SectionId = "enterprise" | "interlinks" | "partner" | "contact";
+type SectionId =
+  | "enterprise"
+  | "interlinks"
+  | "partner"
+  | "contact"
+  | "solutions";
 
 const INTERLINKS_COPY = {
   en: {
@@ -54,14 +59,85 @@ const INTERLINKS_COPY = {
 const HERO_ACTIONS = {
   en: {
     primary: "Contact us",
-    secondary: "What is Interlinks?",
+    secondary: "Solutions",
   },
   es: {
     interlinks: "¿Qué es Interlinks?",
   },
   peru: {
     primary: "Postula al Programa Partner de Interlinks",
-    secondary: "¿Qué es Interlinks?",
+    secondary: "Soluciones",
+  },
+} as const;
+
+const SOLUTIONS_COPY = {
+  en: {
+    eyebrow: "Solutions",
+    title: "Two things we do",
+    intro:
+      "Aberuca builds Interlinks, and we build custom machine learning for companies.",
+    close: "Close",
+    cta: "Talk with us",
+    offers: [
+      {
+        index: "01",
+        name: "Interlinks",
+        line: "Connect your business to AI agents.",
+        body: "When someone searches for a service with AI, your business can be found and contacted. You keep working as usual. Interlinks creates the connection.",
+        points: [
+          "What you offer",
+          "When you are available",
+          "Where you work",
+          "How to send you a request",
+        ],
+      },
+      {
+        index: "02",
+        name: "Machine Learning",
+        line: "Build models for how your company works.",
+        body: "We scope the problem, train the model, and put it into the systems you already run.",
+        points: [
+          "Prediction for demand, risk, and operations",
+          "Language and document intelligence",
+          "Computer vision for inspection and quality",
+          "Data pipelines in production",
+        ],
+      },
+    ],
+  },
+  es: {
+    eyebrow: "Soluciones",
+    title: "Dos cosas que hacemos",
+    intro:
+      "Aberuca construye Interlinks, y construimos machine learning a medida para empresas.",
+    close: "Cerrar",
+    cta: "Habla con nosotros",
+    offers: [
+      {
+        index: "01",
+        name: "Interlinks",
+        line: "Conecta tu negocio con agentes de IA.",
+        body: "Cuando alguien busca un servicio con inteligencia artificial, tu negocio puede ser encontrado y contactado. Sigues trabajando como siempre. Interlinks crea la conexión.",
+        points: [
+          "Qué ofreces",
+          "Cuándo estás disponible",
+          "Dónde trabajas",
+          "Cómo enviarte una solicitud",
+        ],
+      },
+      {
+        index: "02",
+        name: "Machine Learning",
+        line: "Modelos a la medida de cómo opera tu empresa.",
+        body: "Definimos el problema, entrenamos el modelo y lo integramos a los sistemas que ya usas.",
+        points: [
+          "Predicción de demanda, riesgo y operaciones",
+          "Inteligencia de lenguaje y documentos",
+          "Visión por computadora para inspección y calidad",
+          "Pipelines de datos en producción",
+        ],
+      },
+    ],
   },
 } as const;
 
@@ -78,10 +154,19 @@ const PERU_ENTERPRISE = {
     "Hola Aberuca, represento a una gran empresa y quiero conversar sobre Interlinks.",
 } as const;
 
-const USA_CONTACT = {
-  eyebrow: "Contact",
-  title: "Talk with Aberuca",
-  body: "Tell us about your business and how you want to connect with Interlinks.",
+const CONTACT_COPY = {
+  en: {
+    eyebrow: "Contact",
+    title: "Talk with Aberuca",
+    body: "Tell us about your business and how you want to connect with Interlinks.",
+    close: "Close",
+  },
+  es: {
+    eyebrow: "Contacto",
+    title: "Habla con Aberuca",
+    body: "Cuéntanos sobre tu negocio y cómo quieres conectar con Interlinks.",
+    close: "Cerrar",
+  },
 } as const;
 
 const PERU_STEPS = [
@@ -189,6 +274,14 @@ export function MarketingLanding({
           placeSelected={placeSelected}
           ready={showHero}
           onExtended={revealHero}
+          contactActive={activeSection === "contact"}
+          onContact={() => setActiveSection("contact")}
+          solutionsActive={activeSection === "solutions"}
+          onSolutions={
+            region === "usa" || region === "peru"
+              ? () => setActiveSection("solutions")
+              : undefined
+          }
           peruAudience={
             activeSection === "enterprise"
               ? "enterprise"
@@ -239,7 +332,7 @@ export function MarketingLanding({
                 <button
                   className="button button--hero-secondary"
                   type="button"
-                  onClick={() => setActiveSection("interlinks")}
+                  onClick={() => setActiveSection("solutions")}
                 >
                   {HERO_ACTIONS.peru.secondary}
                 </button>
@@ -256,7 +349,7 @@ export function MarketingLanding({
                 <button
                   className="button button--hero-secondary"
                   type="button"
-                  onClick={() => setActiveSection("interlinks")}
+                  onClick={() => setActiveSection("solutions")}
                 >
                   {HERO_ACTIONS.en.secondary}
                 </button>
@@ -368,6 +461,54 @@ export function MarketingLanding({
         </section>
       ) : null}
 
+      {(region === "usa" || region === "peru") &&
+      activeSection === "solutions" ? (
+        <section
+          className="interlinks-section solutions-section"
+          id="solutions"
+          aria-labelledby="solutions-title"
+        >
+          <button
+            className="section-close"
+            type="button"
+            onClick={closeSection}
+          >
+            {SOLUTIONS_COPY[market.lang].close}
+          </button>
+          <p className="section-eyebrow">
+            {SOLUTIONS_COPY[market.lang].eyebrow}
+          </p>
+          <h2 id="solutions-title">{SOLUTIONS_COPY[market.lang].title}</h2>
+          <p className="section-body">{SOLUTIONS_COPY[market.lang].intro}</p>
+          <div className="solutions-grid">
+            {SOLUTIONS_COPY[market.lang].offers.map((offer) => (
+              <article
+                className="solutions-card"
+                key={offer.name}
+                aria-labelledby={`offer-${offer.index}`}
+              >
+                <p className="solutions-card__index">{offer.index}</p>
+                <h3 id={`offer-${offer.index}`}>{offer.name}</h3>
+                <p className="solutions-card__line">{offer.line}</p>
+                <p className="solutions-card__body">{offer.body}</p>
+                <ul className="solutions-card__points">
+                  {offer.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <button
+            className="button button--primary"
+            type="button"
+            onClick={() => setActiveSection("contact")}
+          >
+            {SOLUTIONS_COPY[market.lang].cta}
+          </button>
+        </section>
+      ) : null}
+
       {activeSection === "interlinks" ? (
         <section
           className="interlinks-section interlinks-story"
@@ -394,7 +535,7 @@ export function MarketingLanding({
         </section>
       ) : null}
 
-      {region === "usa" && activeSection === "contact" ? (
+      {activeSection === "contact" ? (
         <section
           className="interlinks-section"
           id="contact"
@@ -405,12 +546,12 @@ export function MarketingLanding({
             type="button"
             onClick={closeSection}
           >
-            Close
+            {CONTACT_COPY[market.lang].close}
           </button>
-          <p className="section-eyebrow">{USA_CONTACT.eyebrow}</p>
-          <h2 id="contact-title">{USA_CONTACT.title}</h2>
-          <p className="section-body">{USA_CONTACT.body}</p>
-          <UsaContactForm />
+          <p className="section-eyebrow">{CONTACT_COPY[market.lang].eyebrow}</p>
+          <h2 id="contact-title">{CONTACT_COPY[market.lang].title}</h2>
+          <p className="section-body">{CONTACT_COPY[market.lang].body}</p>
+          <UsaContactForm region={region} />
         </section>
       ) : null}
 

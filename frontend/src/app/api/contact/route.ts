@@ -1,4 +1,7 @@
-import { parseContactInquiry } from "@/lib/contact-inquiry";
+import {
+  contactApiError,
+  parseContactInquiry,
+} from "@/lib/contact-inquiry";
 import { insertContactInquiry } from "@/lib/supabase/insert-contact-inquiry";
 
 export async function POST(request: Request) {
@@ -8,7 +11,7 @@ export async function POST(request: Request) {
     payload = await request.json();
   } catch {
     return Response.json(
-      { error: "We could not read the message." },
+      { error: contactApiError("usa", "read") },
       { status: 400 },
     );
   }
@@ -23,7 +26,7 @@ export async function POST(request: Request) {
     await insertContactInquiry(parsed.data);
   } catch {
     return Response.json(
-      { error: "We could not send your message. Please try again." },
+      { error: contactApiError(parsed.data.region, "save") },
       { status: 500 },
     );
   }

@@ -29,6 +29,7 @@ Do not build later sections before the hero is approved.
 - Visible `:focus-visible`; WCAG 2.2 AA contrast
 - Mobile-first; honor `prefers-reduced-motion`
 - Hero stays simple
+- USA is English; Perú and Latam are Spanish in every UI string
 
 ## Additional resources
 

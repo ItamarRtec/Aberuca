@@ -17,7 +17,11 @@ type NavPhase = "chooser" | "rising" | "ready";
 
 type RegionNavProps = {
   current: RegionId;
+  contactActive?: boolean;
+  solutionsActive?: boolean;
   peruAudience?: PeruAudience | null;
+  onContact?: () => void;
+  onSolutions?: () => void;
   onPeruAudienceSelect?: (audience: PeruAudience) => void;
   onExtended?: () => void;
   placeSelected?: boolean;
@@ -26,7 +30,11 @@ type RegionNavProps = {
 
 export function RegionNav({
   current,
+  contactActive = false,
+  solutionsActive = false,
   peruAudience = null,
+  onContact,
+  onSolutions,
   onPeruAudienceSelect,
   onExtended,
   placeSelected = false,
@@ -119,6 +127,24 @@ export function RegionNav({
         >
           USA
         </Link>
+        {onSolutions && current === "usa" ? (
+          <div
+            className={`region-nav__chat${menuOpen ? " is-open" : ""}`}
+            id="usa-solutions"
+          >
+            <div className="region-nav__chat-inner">
+              <span className="region-nav__divider" aria-hidden="true" />
+              <button
+                type="button"
+                aria-pressed={solutionsActive}
+                tabIndex={menuOpen ? undefined : -1}
+                onClick={onSolutions}
+              >
+                Solutions
+              </button>
+            </div>
+          </div>
+        ) : null}
         <span className="region-nav__divider region-nav__divider--markets" aria-hidden="true" />
         {expandLatamInPlace ? (
           <button
@@ -185,8 +211,32 @@ export function RegionNav({
               >
                 Grandes Empresas
               </button>
+              {onSolutions ? (
+                <button
+                  type="button"
+                  aria-pressed={solutionsActive}
+                  tabIndex={menuOpen ? undefined : -1}
+                  onClick={onSolutions}
+                >
+                  Soluciones
+                </button>
+              ) : null}
             </div>
           </div>
+        ) : null}
+
+        {onContact ? (
+          <>
+            <span className="region-nav__divider" aria-hidden="true" />
+            <button
+              type="button"
+              className="region-nav__contact"
+              aria-pressed={contactActive}
+              onClick={onContact}
+            >
+              {current === "usa" ? "Contact" : "Contacto"}
+            </button>
+          </>
         ) : null}
       </nav>
     </div>

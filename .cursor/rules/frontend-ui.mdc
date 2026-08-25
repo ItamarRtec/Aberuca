@@ -14,3 +14,4 @@ Follow `frontend/AGENTS.md`. This is Next.js 16 — check `frontend/node_modules
 4. Tailwind is for layout. Do not invent a second palette in `@theme`.
 5. Hero is headline + one line + one primary CTA. Do not add extra chrome.
 6. Server Components first. Semantic HTML, visible focus, WCAG AA, mobile-first, `prefers-reduced-motion`.
+7. USA is English. Perú and Latam are Spanish in every UI string.
